@@ -1,0 +1,53 @@
+<!--<c:if test="${requestScope.error != null}">-->
+<!--  <div class="row col-5 alert alert-danger my-3 mx-auto" role="alert">-->
+<!--    ${requestScope.error}-->
+<!--  </div>-->
+<!--</c:if>-->
+<div *ngIf="cart">
+  <div class="row row-cols-1 row-cols-md-2 mt-5 gx-5">
+    <div class="col">
+      <div *ngIf="cart.items.length==0" class="text-center">
+        <h1>Cart is empty</h1>
+      </div>
+      <div *ngFor="let item of cart.items">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{item.product.photoUrl}}" width="200" height="200" style="object-fit: scale-down; height: 200px" class="img-fluid rounded-start"
+                   alt="Product image">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body h-100 d-flex flex-column justify-content-around">
+                <h5 class="card-title"><strong>{{item.product.name}}</strong></h5>
+                <span class="text-body-secondary">Category: {{item.product.category.name}}</span>
+                <p class="card-text">Price:
+                  <strong>
+                    {{item.product.price * item.quantity / 100 | currency}}
+                  </strong>
+                </p>
+                <p class="card-text">Quantity: <strong>{{item.quantity}}</strong></p>
+                <form>
+                  <input type="hidden" name="product-id" value="${item.product.id}">
+                  <input type="hidden" name="product-price" value="${item.product.price}">
+                  <input type="hidden" name="item-quantity" value="${item.quantity}">
+                  <button type="submit" class="btn btn-danger" (click)="deleteItemFromCart(item)">DELETE FROM CART
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h4 class="mb-3">Total price:
+        {{cart.totalPrice / 100|currency}}
+      </h4>
+      <div *ngIf="cart.items.length!=0">
+        <button (click)="createOrder()" [disabled]="cart.items.length<=0" class="btn btn-primary" style="width: 200px">
+          Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

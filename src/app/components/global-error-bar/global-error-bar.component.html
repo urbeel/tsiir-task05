@@ -1,0 +1,6 @@
+<section *ngIf="errorMessage">
+  <div class="alert alert-danger alert-dismissible">
+    <h4 class="text-center">{{errorMessage}}</h4>
+    <button class="btn-close" (click)="closeAlert()"></button>
+  </div>
+</section>

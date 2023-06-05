@@ -1,0 +1,28 @@
+<div class="card h-100">
+  <a routerLink="{{this.authService.isAdmin()? product.id : 'products/'+product.id}}"
+     class="text-decoration-none text-dark h-100 d-flex flex-column">
+    <img [src]="product.photoUrl" class="card-img-top" [alt]="product.name" style="object-fit: scale-down;" height="200"
+         width="200">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text text-secondary">{{product.category.name}}</p>
+  </div>
+  <div class="card-footer align-content-end">
+    <div class="text-body-secondary d-flex justify-content-between">
+      <span>Quantity: {{product.quantity}}</span>
+      <span class="fw-bold">
+          {{product.price / 100 | currency}}
+        </span>
+    </div>
+    <div *ngIf="isAdmin" class="row mt-3">
+      <div class="col-6">
+        <button type="button" class="btn btn-primary" (click)="openModal()">Quantity</button>
+      </div>
+      <div class="col-6">
+        <button (click)="deleteProduct(product)" class="btn btn-danger">DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-update-product-quantity-modal></app-update-product-quantity-modal>

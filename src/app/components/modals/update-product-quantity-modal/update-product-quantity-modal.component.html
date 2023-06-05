@@ -1,0 +1,16 @@
+<ng-template #modal let-modal>
+  <form [formGroup]="updateProductQuantityForm" (submit)="updateProductQuantity()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">CHANGE PRODUCT QUANTITY</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close()"></button>
+    </div>
+    <div class="modal-body">
+
+      <label for="p-quantity" class="form-label">NEW PRODUCT QUANTITY:</label>
+      <input type="number" formControlName="quantity" class="form-control mb-2" id="p-quantity" min="0">
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Change</button>
+    </div>
+  </form>
+</ng-template>

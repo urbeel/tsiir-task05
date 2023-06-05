@@ -1,0 +1,52 @@
+<div class="row mt-5 mb-2">
+  <div class="col-md-6">
+    <form [formGroup]="newCategoryForm" (submit)="createCategory()">
+      <div class="row">
+        <label for="create-category-name" class="form-label">Product category name:</label>
+        <div *ngIf="categoryName.invalid && ((categoryName.touched || categoryName.dirty))" class="text-danger">
+          <p *ngIf="categoryName.errors?.required">
+            Name of product category is required
+          </p>
+          <p *ngIf="categoryName.errors?.maxlength">
+            Max length of category name is 20 characters. Actual length
+            is {{categoryName.errors?.maxlength.actualLength}}
+          </p>
+        </div>
+        <input type="text" formControlName="categoryName" class="form-control mb-2 col" id="create-category-name">
+
+        <div class="col">
+          <button type="submit" [disabled]="newCategoryForm.invalid" class="btn btn-success">ADD</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div *ngIf="categories.length==0">
+  <h1>Categories not found</h1>
+</div>
+<table class="table" *ngIf="categories.length>0">
+  <caption>Product categories</caption>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Category Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let category of categories">
+    <td>{{category.id}}</td>
+    <td>{{category.name}}</td>
+    <td>
+      <button (click)="openUpdateCategoryModal(category)" class="btn btn-primary">UPDATE</button>
+    </td>
+    <td>
+      <button (click)="deleteCategory(category.id)" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<app-update-category-modal></app-update-category-modal>
+

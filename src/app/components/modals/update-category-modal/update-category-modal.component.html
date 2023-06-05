@@ -1,0 +1,25 @@
+<ng-template #modal let-modal>
+  <form [formGroup]="updateCategoryForm" (submit)="updateCategory()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Update category: {{category?.name}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close()"></button>
+    </div>
+    <div class="modal-body">
+
+      <label for="c-name" class="form-label">Category name:</label>
+      <input type="text" formControlName="categoryName"
+             class="form-control" id="c-name">
+      <div *ngIf="categoryName.invalid && ((categoryName.touched || categoryName.dirty))" class="text-danger">
+        <p *ngIf="categoryName.errors?.required">
+          Category name is required
+        </p>
+        <p *ngIf="categoryName.errors?.maxlength">
+          Max length of category name is 60 characters. Actual length is {{categoryName.errors?.maxlength.actualLength}}
+        </p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="updateCategoryForm.invalid">Update</button>
+    </div>
+  </form>
+</ng-template>

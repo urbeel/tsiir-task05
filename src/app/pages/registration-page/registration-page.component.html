@@ -1,0 +1,108 @@
+<div *ngIf="errorMessage">
+  <p class="alert alert-danger mt-3 mb-1 w-50 mx-auto">{{errorMessage}}</p>
+</div>
+
+<div class="row card mt-5 mb-4 p-4 mx-auto" style="width: 500px">
+  <h1 class="mb-3 text-center">SIGN UP</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label class="form-label" for="u-name">Email</label>
+    <input type="email" formControlName="email"
+           id="u-name" class="form-control mb-2">
+    <div *ngIf="email.invalid && ((email.touched || email.dirty))" class="text-danger">
+      <p *ngIf="email.errors?.required">
+        Email is required
+      </p>
+      <p *ngIf="email.errors?.email">
+        Invalid email format
+      </p>
+      <p *ngIf="email.errors?.maxlength">
+        Max length of email is 60 characters. Actual length is {{email.errors?.maxlength.actualLength}}
+      </p>
+    </div>
+
+    <label class="form-label" for="u-firstname">First name</label>
+    <input type="text" formControlName="firstname"
+           id="u-firstname" class="form-control mb-2">
+    <div *ngIf="firstname.invalid && ((firstname.touched || firstname.dirty))" class="text-danger">
+      <p *ngIf="firstname.errors?.required">
+        Firstname is required
+      </p>
+      <p *ngIf="firstname.errors?.maxlength">
+        Max length of firstname is 45 characters. Actual length is {{firstname.errors?.maxlength.actualLength}}
+      </p>
+    </div>
+    <label class="form-label" for="u-lastname">Last name</label>
+    <input type="text" formControlName="lastname"
+           id="u-lastname" class="form-control mb-2">
+    <div *ngIf="lastname.invalid && ((lastname.touched || lastname.dirty))" class="text-danger">
+      <p *ngIf="lastname.errors?.required">
+        Lastname is required
+      </p>
+      <p *ngIf="lastname.errors?.maxlength">
+        Max length of lastname is 45 characters. Actual length is {{lastname.errors?.maxlength.actualLength}}
+      </p>
+    </div>
+
+    <label class="form-label" for="u-phone">Phone number</label>
+    <input type="text" formControlName="phone"
+           id="u-phone" class="form-control mb-2">
+    <div *ngIf="phone.invalid && ((phone.touched || phone.dirty))" class="text-danger">
+      <p *ngIf="phone.errors?.required">
+        Phone number is required
+      </p>
+      <p *ngIf="phone.errors?.maxlength">
+        Max length of phone number is 20 characters. Actual length is {{phone.errors?.maxlength.actualLength}}
+      </p>
+    </div>
+
+    <label class="form-label" for="u-address">Address</label>
+    <input type="text" formControlName="address"
+           id="u-address" class="form-control mb-2">
+    <div *ngIf="address.invalid && ((address.touched || address.dirty))" class="text-danger">
+      <p *ngIf="address.errors?.required">
+        Address is required
+      </p>
+      <p *ngIf="address.errors?.maxlength">
+        Max length of address is 255 characters. Actual length is {{address.errors?.maxlength.actualLength}}
+      </p>
+    </div>
+
+    <label class="form-label" for="pass">Password</label>
+    <input type="password" formControlName="password"
+           id="pass" class="form-control mb-2" required>
+    <div *ngIf="password.invalid && ((password.touched || password.dirty))" class="text-danger">
+      <p *ngIf="password.errors?.required">
+        Password is required
+      </p>
+      <p *ngIf="password.errors?.minlength">
+        Min length of password is 6 characters. Actual length is {{password.errors?.minlength.actualLength}}
+      </p>
+      <p *ngIf="password.errors?.maxlength">
+        Max length of password is 16 characters. Actual length is {{password.errors?.maxlength.actualLength}}
+      </p>
+    </div>
+    <p *ngIf="form.errors?.passwordMismatch" class="text-danger">
+      Password mismatch
+    </p>
+
+    <label class="form-label" for="confirm-pass">Confirm password</label>
+    <input type="password" formControlName="confirmPassword" id="confirm-pass" class="form-control mb-3" required>
+    <div *ngIf="confirmPassword.invalid && ((confirmPassword.touched || confirmPassword.dirty))" class="text-danger">
+      <p *ngIf="confirmPassword.errors?.required">
+        Confirm password is required
+      </p>
+    </div>
+    <p *ngIf="form.errors?.passwordMismatch" class="text-danger">
+      Password mismatch
+    </p>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        SIGN UP
+      </button>
+    </div>
+  </form>
+  <span class="mt-4 text-center">Already have account?<strong class="mx-2">
+            <a routerLink="/login">Log in</a></strong>
+        </span>
+</div>

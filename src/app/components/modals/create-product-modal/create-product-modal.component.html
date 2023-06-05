@@ -1,0 +1,46 @@
+<ng-template #modal let-modal>
+  <form [formGroup]="createProductForm" (submit)="createProduct()" enctype="multipart/form-data">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create product</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close()"></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="p-name" class="form-label">Name: </label>
+        <input type="text" formControlName="name" id="p-name" class="form-control" required/>
+      </div>
+      <div class="mb-3">
+        <label for="p-price" class="form-label">Price (in cents):</label>
+        <input type="number" min="0" formControlName="price" id="p-price" class="form-control"
+               required/>
+      </div>
+      <div class="mb-3">
+        <label for="p-quantity" class="form-label">Quantity:</label>
+        <input type="number" min="0" formControlName="quantity" id="p-quantity" class="form-control"
+               required/>
+      </div>
+      <div class="mb-3">
+        <label for="p-category" class="form-label">Category:</label>
+        <select *ngIf="categories.length>0" formControlName="category" id="p-categorys"
+                class="form-control" required>
+          <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+        </select>
+        <select *ngIf="categories.length==0" id="p-category" class="form-control" disabled>
+          <option [defaultSelected]="true">No categories. Add at least one for creating product</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="p-photo" class="form-label">Product photo:</label>
+        <input type="file" (change)="onFileChange($event)" accept="image/*" id="p-photo" class="form-control"/>
+      </div>
+      <div class="mb-3">
+        <label for="p-description" class="form-label">Description:</label>
+        <textarea formControlName="description" cols="200" class="form-control"
+                  id="p-description"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="createProductForm.invalid">Create</button>
+    </div>
+  </form>
+</ng-template>

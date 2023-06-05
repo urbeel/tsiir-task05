@@ -1,0 +1,15 @@
+<!--<c:if test="${requestScope.error != null}">-->
+<!--  <div class="row col-5 alert alert-danger my-3 mx-auto" role="alert">-->
+<!--    ${requestScope.error}-->
+<!--  </div>-->
+<!--</c:if>-->
+<div class="mb-3 mt-5">
+  <button class="btn btn-success" (click)="modalComponent.openModal()">Add product</button>
+  <app-create-product-modal></app-create-product-modal>
+</div>
+<div *ngIf="products.length==0">
+  <h1>Products not found</h1>
+</div>
+<div *ngIf="products.length>0" class="row row-cols-1 row-cols-lg-5 row-cols-md-3 g-4">
+  <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>
+</div>

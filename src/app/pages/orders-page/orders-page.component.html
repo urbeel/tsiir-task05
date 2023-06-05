@@ -1,0 +1,61 @@
+<h2 class="mb-3 mt-4">{{orderStatus.toUpperCase()}} ORDERS</h2>
+<div class="text-center mt-3" *ngIf="orders.length==0">
+  <h1>Orders not found</h1>
+</div>
+<div *ngIf="orders.length>0">
+  <div *ngFor="let order of orders" class="card mb-2">
+    <div class="card-header">
+      <div class="row">
+        <h5 class="col">
+          {{order.orderTime|date:"yyyy-MM-dd HH:mm:ss"}}
+        </h5>
+        <h5 class="col">Email: {{order.user.email}}</h5>
+        <h5 class="col">Phone: {{order.user.phone}}</h5>
+        <h5 class="col">Address: {{order.user.address}}</h5>
+        <h5 class="col">Full Name: {{order.user.firstname}} {{order.user.lastname}}</h5>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <caption>Ordered products</caption>
+        <thead class="table-header">
+        <tr>
+          <th>ID</th>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Total price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{item.product.id}}</td>
+          <td>{{item.product.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.product.price / 100|currency}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="4" class="card-text text-end">
+            <strong class="fs-5">Total Price: {{order.totalPrice / 100|currency}}</strong>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div *ngIf="orderStatus==OrderStatuses.NEW || orderStatus==OrderStatuses.ACCEPTED"
+         class="card-footer d-flex justify-content-between">
+      <button *ngIf="orderStatus==OrderStatuses.NEW" class="btn btn-success"
+              (click)="changeOrderStatus(order.id,OrderStatuses.ACCEPTED)">
+        Accept
+      </button>
+      <button *ngIf="orderStatus==OrderStatuses.ACCEPTED" class="btn btn-success"
+              (click)="changeOrderStatus(order.id,OrderStatuses.FINISHED)">
+        Finish
+      </button>
+      <button (click)="changeOrderStatus(order.id,OrderStatuses.CANCELED)" class="btn btn-danger">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

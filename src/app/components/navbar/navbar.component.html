@@ -1,0 +1,22 @@
+<nav class="navbar bg-dark navbar-dark navbar-expand">
+  <div class="container d-flex">
+    <a class="navbar-brand" routerLink="">Store</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngIf="!isAuthenticated" class="nav-item">
+          <a class="nav-link" routerLink="login">LOGIN</a>
+        </li>
+        <li *ngIf="authService.isCustomer()" class="nav-item">
+          <button class="nav-link btn btn-link" routerLink="cart">CART</button>
+        </li>
+        <li *ngIf="isAuthenticated" class="nav-item">
+          <button class="nav-link btn btn-link" (click)="onLogoutBtnClick()">LOGOUT</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

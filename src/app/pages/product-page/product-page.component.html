@@ -1,0 +1,47 @@
+<div *ngIf="!product" class="text-center mt-5">
+  <h1>Product not found</h1>
+</div>
+
+<div *ngIf="product" class="card my-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="product.photoUrl" width="100%" class="img-fluid rounded-start" style="object-fit: scale-down; height: 600px" alt="{{product.name}}" >
+    </div>
+    <div class="col-md-8">
+      <div class="card-body h-100 d-flex flex-column justify-content-around">
+        <h5 class="card-title"><strong>{{product.name}}</strong></h5>
+        <span class="text-body-secondary">Category: {{product.category.name}}</span>
+        <p *ngIf="product.description" class="text-body-secondary">
+          Description:<br>
+          {{product.description}}
+        </p>
+        <p class="card-text">Price:
+          <strong>
+            {{product.price / 100 | currency}}
+          </strong>
+        </p>
+        <p class="card-text">In Stock: <strong>{{product.quantity}}</strong></p>
+        <div *ngIf="authService.isCustomer()">
+          <form [formGroup]="cartItemForm" (ngSubmit)="addItemToCart()">
+            <div class="row row-cols-3 gx-5">
+              <div class="col">
+                <div class="row">
+                  <label for="p-quantity" class="form-label col">Quantity:</label>
+                  <input formControlName="itemQuantity" type="number" id="p-quantity"
+                         class="form-control col"
+                         style="width: 100px;"
+                         min="1" [max]="product.quantity" required>
+                </div>
+              </div>
+              <div class="col">
+                <input type="submit" value="Add To Cart"
+                       [disabled]="cartItemForm.invalid || cartItemForm.disabled"
+                       class="btn btn-success align-self-center align-self-sm-start" style="width: 200px"/>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

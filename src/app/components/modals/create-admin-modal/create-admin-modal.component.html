@@ -1,0 +1,79 @@
+<ng-template #modal let-modal>
+  <form [formGroup]="createAdminForm" (submit)="createAdmin()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create admin</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close()"></button>
+    </div>
+    <div class="modal-body">
+      <label class="form-label" for="u-name">Email</label>
+      <input type="email" formControlName="email"
+             id="u-name" class="form-control mb-2">
+      <div *ngIf="email.invalid && ((email.touched || email.dirty))" class="text-danger">
+        <p *ngIf="email.errors?.required">
+          Email is required
+        </p>
+        <p *ngIf="email.errors?.email">
+          Invalid email format
+        </p>
+        <p *ngIf="email.errors?.maxlength">
+          Max length of email is 60 characters. Actual length is {{email.errors?.maxlength.actualLength}}
+        </p>
+      </div>
+
+      <label class="form-label" for="u-firstname">First name</label>
+      <input type="text" formControlName="firstname"
+             id="u-firstname" class="form-control mb-2">
+      <div *ngIf="firstname.invalid && ((firstname.touched || firstname.dirty))" class="text-danger">
+        <p *ngIf="firstname.errors?.required">
+          Firstname is required
+        </p>
+        <p *ngIf="firstname.errors?.maxlength">
+          Max length of firstname is 45 characters. Actual length is {{firstname.errors?.maxlength.actualLength}}
+        </p>
+      </div>
+      <label class="form-label" for="u-lastname">Last name</label>
+      <input type="text" formControlName="lastname"
+             id="u-lastname" class="form-control mb-2">
+      <div *ngIf="lastname.invalid && ((lastname.touched || lastname.dirty))" class="text-danger">
+        <p *ngIf="lastname.errors?.required">
+          Lastname is required
+        </p>
+        <p *ngIf="lastname.errors?.maxlength">
+          Max length of lastname is 45 characters. Actual length is {{lastname.errors?.maxlength.actualLength}}
+        </p>
+      </div>
+
+      <label class="form-label" for="pass">Password</label>
+      <input type="password" formControlName="password"
+             id="pass" class="form-control mb-2" required>
+      <div *ngIf="password.invalid && ((password.touched || password.dirty))" class="text-danger">
+        <p *ngIf="password.errors?.required">
+          Password is required
+        </p>
+        <p *ngIf="password.errors?.minlength">
+          Min length of password is 6 characters. Actual length is {{password.errors?.minlength.actualLength}}
+        </p>
+        <p *ngIf="password.errors?.maxlength">
+          Max length of password is 16 characters. Actual length is {{password.errors?.maxlength.actualLength}}
+        </p>
+      </div>
+      <p *ngIf="createAdminForm.errors?.passwordMismatch" class="text-danger">
+        Password mismatch
+      </p>
+
+      <label class="form-label" for="confirm-pass">Confirm password</label>
+      <input type="password" formControlName="confirmPassword" id="confirm-pass" class="form-control mb-3" required>
+      <div *ngIf="confirmPassword.invalid && ((confirmPassword.touched || confirmPassword.dirty))" class="text-danger">
+        <p *ngIf="confirmPassword.errors?.required">
+          Confirm password is required
+        </p>
+      </div>
+      <p *ngIf="createAdminForm.errors?.passwordMismatch" class="text-danger">
+        Password mismatch
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="createAdminForm.invalid">Create</button>
+    </div>
+  </form>
+</ng-template>
