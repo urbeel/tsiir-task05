@@ -28,8 +28,7 @@ import {OrdersPageComponent} from './pages/orders-page/orders-page.component';
 import {UsersPageComponent} from './pages/users-page/users-page.component';
 import {CreateAdminModalComponent} from './components/modals/create-admin-modal/create-admin-modal.component';
 import {HttpResponseInterceptor} from "./interceptors/http-response.interceptor";
-import { GlobalErrorBarComponent } from './components/global-error-bar/global-error-bar.component';
-import { SearchedTripsPageComponent } from './pages/searched-trips-page/searched-trips-page.component';
+import {GlobalErrorBarComponent} from './components/global-error-bar/global-error-bar.component';
 
 @NgModule({
   declarations: [
@@ -50,8 +49,7 @@ import { SearchedTripsPageComponent } from './pages/searched-trips-page/searched
     OrdersPageComponent,
     UsersPageComponent,
     CreateAdminModalComponent,
-    GlobalErrorBarComponent,
-    SearchedTripsPageComponent
+    GlobalErrorBarComponent
   ],
   imports: [
     BrowserModule,
