@@ -7,8 +7,7 @@ import {IProduct} from "../../../models/product";
 
 @Component({
   selector: 'app-update-product-quantity-modal',
-  templateUrl: './update-product-quantity-modal.component.html',
-  styleUrls: ['./update-product-quantity-modal.component.css']
+  templateUrl: './update-product-quantity-modal.component.html'
 })
 export class UpdateProductQuantityModalComponent implements OnInit, OnDestroy {
   product: IProduct | undefined;

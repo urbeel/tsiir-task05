@@ -7,8 +7,7 @@ import {OrderStatuses} from "../../enums/order-statuses";
 
 @Component({
   selector: 'app-orders-page',
-  templateUrl: './orders-page.component.html',
-  styleUrls: ['./orders-page.component.css']
+  templateUrl: './orders-page.component.html'
 })
 export class OrdersPageComponent implements OnInit, OnDestroy {
   protected orders: IOrder[] = [];

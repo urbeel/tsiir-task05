@@ -6,8 +6,7 @@ import {CreateAdminModalComponent} from "../../components/modals/create-admin-mo
 
 @Component({
   selector: 'app-users-page',
-  templateUrl: './users-page.component.html',
-  styleUrls: ['./users-page.component.css']
+  templateUrl: './users-page.component.html'
 })
 export class UsersPageComponent implements OnInit, OnDestroy {
   protected users: IUser[] = [];
@@ -33,9 +32,5 @@ export class UsersPageComponent implements OnInit, OnDestroy {
     if (this.deleteUsersSub) {
       this.deleteUsersSub.unsubscribe();
     }
-  }
-
-  deleteUser(user: IUser): void {
-    this.deleteUsersSub = this.userService.delete(user.id).subscribe();
   }
 }

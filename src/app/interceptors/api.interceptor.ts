@@ -9,7 +9,6 @@ import {environment} from "../../environments/environment";
 })
 export class ApiInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //todo enviroment var for api path?
     const apiReq = req.clone({url: environment.apiUrl + req.url});
     return next.handle(apiReq);
   }

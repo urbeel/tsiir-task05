@@ -3,12 +3,10 @@ import {AuthService} from "../../services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {NavbarComponent} from "../../components/navbar/navbar.component";
 
 @Component({
   selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  templateUrl: './login-page.component.html'
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
   private authSub: Subscription;
@@ -35,7 +33,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.form.disable();
     this.authSub = this.authService.login(this.form.value).subscribe({
-        next: value => {
+        next: () => {
           this.router.navigate(['']).catch(reason => console.error(reason));
         },
         error: err => {

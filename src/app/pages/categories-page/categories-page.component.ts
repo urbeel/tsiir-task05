@@ -10,8 +10,7 @@ import {ErrorService} from "../../services/error.service";
 
 @Component({
   selector: 'app-categories-page',
-  templateUrl: './categories-page.component.html',
-  styleUrls: ['./categories-page.component.css']
+  templateUrl: './categories-page.component.html'
 })
 export class CategoriesPageComponent implements OnInit, OnDestroy {
   protected categories: ICategory[] = [];

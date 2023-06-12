@@ -4,13 +4,11 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomValidators} from "../../../form-validators/custom-validators";
 import {AuthService} from "../../../services/auth.service";
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
 import {UsersPageComponent} from "../../../pages/users-page/users-page.component";
 
 @Component({
   selector: 'app-create-admin-modal',
-  templateUrl: './create-admin-modal.component.html',
-  styleUrls: ['./create-admin-modal.component.css']
+  templateUrl: './create-admin-modal.component.html'
 })
 export class CreateAdminModalComponent implements OnInit, OnDestroy {
   @ViewChild('modal') modal: TemplateRef<any>;

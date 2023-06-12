@@ -6,8 +6,7 @@ import {CreateProductModalComponent} from "../../components/modals/create-produc
 
 @Component({
   selector: 'app-products-page',
-  templateUrl: './products-page.component.html',
-  styleUrls: ['./products-page.component.css']
+  templateUrl: './products-page.component.html'
 })
 export class ProductsPageComponent implements OnInit, OnDestroy {
   protected products: IProduct[] = [];

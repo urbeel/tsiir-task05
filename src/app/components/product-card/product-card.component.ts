@@ -11,8 +11,7 @@ import {ErrorService} from "../../services/error.service";
 
 @Component({
   selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  templateUrl: './product-card.component.html'
 })
 export class ProductCardComponent implements OnInit, OnDestroy {
   @Input() product: IProduct;

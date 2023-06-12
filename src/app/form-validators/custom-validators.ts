@@ -1,4 +1,4 @@
-import {AbstractControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {AbstractControl, ValidationErrors} from "@angular/forms";
 
 export class CustomValidators {
   static passwordsEqualityValidator(form: AbstractControl): ValidationErrors | null {

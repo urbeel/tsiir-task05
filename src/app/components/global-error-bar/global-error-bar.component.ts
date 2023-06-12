@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {ErrorService} from "../../services/error.service";
 
 @Component({
   selector: 'app-global-error-bar',
-  templateUrl: './global-error-bar.component.html',
-  styleUrls: ['./global-error-bar.component.css']
+  templateUrl: './global-error-bar.component.html'
 })
 export class GlobalErrorBarComponent implements OnInit, OnDestroy {
   protected errorMessage: string | null;

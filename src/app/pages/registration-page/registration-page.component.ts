@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
@@ -7,8 +7,7 @@ import {CustomValidators} from "../../form-validators/custom-validators";
 
 @Component({
   selector: 'app-registration-page',
-  templateUrl: './registration-page.component.html',
-  styleUrls: ['./registration-page.component.css']
+  templateUrl: './registration-page.component.html'
 })
 export class RegistrationPageComponent implements OnInit, OnDestroy {
   registerSub: Subscription;
@@ -58,7 +57,7 @@ export class RegistrationPageComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.form.disable();
       this.registerSub = this.authService.register(this.form.value).subscribe({
-          next: value => {
+          next: () => {
             this.router.navigate(['login']).catch(reason => console.error(reason));
           },
           error: err => {

@@ -11,8 +11,7 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cart-page',
-  templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.css']
+  templateUrl: './cart-page.component.html'
 })
 export class CartPageComponent implements OnInit, OnDestroy {
   protected cart: ICart;
@@ -61,7 +60,9 @@ export class CartPageComponent implements OnInit, OnDestroy {
       items: this.cart.items
     } as IOrder;
     this.orderSub = this.orderService.createOrder(order).subscribe({
-      next: () => this.router.navigate(['']),
+      next: () => {
+        this.router.navigate(['']).catch(reason => console.error(reason));
+      },
       error: err => console.error(err)
     });
   }

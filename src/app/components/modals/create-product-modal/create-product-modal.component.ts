@@ -10,8 +10,7 @@ import {ErrorService} from "../../../services/error.service";
 
 @Component({
   selector: 'app-create-product-modal',
-  templateUrl: './create-product-modal.component.html',
-  styleUrls: ['./create-product-modal.component.css']
+  templateUrl: './create-product-modal.component.html'
 })
 export class CreateProductModalComponent implements OnInit, OnDestroy {
   @ViewChild('modal') modal: TemplateRef<any>;

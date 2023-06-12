@@ -8,8 +8,7 @@ import {ErrorService} from "../../../services/error.service";
 
 @Component({
   selector: 'app-update-category-modal',
-  templateUrl: './update-category-modal.component.html',
-  styleUrls: ['./update-category-modal.component.css']
+  templateUrl: './update-category-modal.component.html'
 })
 export class UpdateCategoryModalComponent implements OnInit, OnDestroy {
   category: ICategory | undefined;

@@ -14,8 +14,4 @@ export class UserService {
   readAll(): Observable<IUser[]> {
     return this.http.get<IUser[]>('users');
   }
-
-  delete(id: number): Observable<any> {
-    return this.http.delete<IUser[]>(`users/${id}`);
-  }
 }

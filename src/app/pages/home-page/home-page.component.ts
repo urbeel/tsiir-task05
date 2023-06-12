@@ -3,12 +3,10 @@ import {IProduct} from "../../models/product";
 import {ProductService} from "../../services/product.service";
 import {Subscription} from "rxjs";
 import {AuthService} from "../../services/auth.service";
-import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  templateUrl: './home-page.component.html'
 })
 export class HomePageComponent implements OnInit, OnDestroy {
   protected products: IProduct[] = [];

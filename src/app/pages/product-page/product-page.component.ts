@@ -11,8 +11,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-product-page',
-  templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.css']
+  templateUrl: './product-page.component.html'
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
   protected product: IProduct;
@@ -62,7 +61,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         quantity: this.cartItemForm.controls.itemQuantity.value
       }
       this.cartItemSub = this.cartService.addItemToCart(this.userId, item).subscribe({
-          next: () => this.router.navigate([""]),
+          next: () => {
+            this.router.navigate(['']).catch(reason => console.error(reason));
+          },
           error: (err) => console.error(err)
         }
       );
